@@ -1,10 +1,16 @@
 route:
-  receiver: 'slack'
+  receiver: 'telegram'
 
 receivers:
-  - name: 'slack'
+#  - name: 'slack'
 #       slack_configs:
 #           - send_resolved: true
 #             username: '<username>'
 #             channel: '#<channel-name>'
 #             api_url: '<incomming-webhook-url>'
+#
+  - name: 'telegram'
+    telegram_configs:
+      - bot_token: 6214392631:AAGH5kPyz23qJANsp80wCSmXPSL0hGXOknA
+        chat_id: 6222331725
+        api_url: https://api.telegram.org

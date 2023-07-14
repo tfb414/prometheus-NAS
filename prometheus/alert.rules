@@ -22,7 +22,7 @@ groups:
       description: "{{ $labels.instance }} of job {{ $labels.job }} is under high load and has an average CPU idle (current value: {{$value}})"
 
   - alert: node_swap_usage                                                                                                                            
-    expr: (((node_memory_SwapTotal-node_memory_SwapFree)/node_memory_SwapTotal)*100) > 75
+    expr: (((node_memory_SwapTotal_bytes-node_memory_SwapFree_bytes)/node_memory_SwapTotal_bytes)*100) > 75
     for: 1m
     labels:
       severity: page
@@ -31,7 +31,7 @@ groups:
       description: "{{ $labels.instance }}: Swap usage is above 75% (current value is: {{ $value }})"
 
   - alert: node_memory_usage
-    expr: (((node_memory_MemTotal-node_memory_MemFree-node_memory_Cached)/(node_memory_MemTotal)*100)) > 90
+    expr: (((node_memory_MemTotal_bytes-node_memory_MemFree_bytes-node_memory_Cached_bytes)/(node_memory_MemTotal_bytes)*100)) > 90
     for: 1m
     labels:
       severity: page

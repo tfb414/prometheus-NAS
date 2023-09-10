@@ -139,6 +139,15 @@ services:
       DEVICE_ID: ${DEVICE_ID}
       DAIKIN_EXPORTER_PORT: 5555
     restart: unless-stopped
+      #xcel_itron2mqtt:
+      #image: ghcr.io/zaknye/xcel_itron2mqtt:main
+      #restart: unless-stopped
+      #volumes:
+      #- ~/prometheus/xcel_itron2mqtt/scripts/certs:/opt/xcel_itron2mqtt/certs
+      #links:
+      #- mosquitto
+      #environment:
+      #- MQTT_SERVER=192.168.0.38
 
 #  pushgateway:
 #    image: prom/pushgateway

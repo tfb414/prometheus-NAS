@@ -26,7 +26,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 14336,
   "graphTooltip": 2,
-  "id": 2,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -1239,6 +1239,6 @@
   "timezone": "",
   "title": "Speedtest",
   "uid": "DS4xw19Gz",
-  "version": 5,
+  "version": 29,
   "weekStart": ""
 }

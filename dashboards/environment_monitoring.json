@@ -1,0 +1,4287 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "limit": 100,
+        "name": "Annotations & Alerts",
+        "showIn": 0,
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Environment Monitoring  - Temperature, Humidity, CO2, PM2.5, TVOC",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": 13700,
+  "graphTooltip": 0,
+  "id": 9,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {},
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<span style=\"font-size:34px\">Temperature</span>\n         ",
+        "mode": "html"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "refId": "A"
+        }
+      ],
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-blue",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 41
+              },
+              {
+                "color": "green",
+                "value": 64
+              },
+              {
+                "color": "orange",
+                "value": 72
+              },
+              {
+                "color": "red",
+                "value": 79
+              }
+            ]
+          },
+          "unit": "fahrenheit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 18,
+        "x": 0,
+        "y": 2
+      },
+      "id": 2,
+      "interval": "",
+      "options": {
+        "displayMode": "lcd",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "limit": 1,
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_temperature{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_tempIndoor",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-blue",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 41
+              },
+              {
+                "color": "green",
+                "value": 64
+              },
+              {
+                "color": "orange",
+                "value": 72
+              },
+              {
+                "color": "red",
+                "value": 79
+              }
+            ]
+          },
+          "unit": "fahrenheit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 2
+      },
+      "id": 3,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_temperature{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_tempIndoor",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Average House Temperature",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "mean"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "right",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 30,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "degree"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_tempOutdoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Outside"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_heatingStatus\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Heat"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    0,
+                    10
+                  ],
+                  "fill": "dot"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 18,
+        "x": 0,
+        "y": 10
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_temperature{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_tempIndoor",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_tempOutdoor",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_coolingStatus",
+          "hide": true,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "ac_heatingStatus",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "E"
+        }
+      ],
+      "title": "Temperature",
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "boolean",
+                "targetField": "{__name__=\"ac_heatingStatus\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              }
+            ],
+            "fields": {}
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-blue",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 41
+              },
+              {
+                "color": "green",
+                "value": 64
+              },
+              {
+                "color": "orange",
+                "value": 72
+              },
+              {
+                "color": "red",
+                "value": 79
+              }
+            ]
+          },
+          "unit": "fahrenheit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_tempOutdoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Outside"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-blue",
+                      "value": null
+                    },
+                    {
+                      "color": "blue",
+                      "value": 30
+                    },
+                    {
+                      "color": "light-blue",
+                      "value": 40
+                    },
+                    {
+                      "color": "green",
+                      "value": 50
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 85
+                    },
+                    {
+                      "color": "super-light-red",
+                      "value": 90
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 2,
+        "x": 18,
+        "y": 10
+      },
+      "id": 5,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_temperature{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_tempIndoor",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_tempOutdoor",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "Highest Temperature",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-blue",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 41
+              },
+              {
+                "color": "green",
+                "value": 64
+              },
+              {
+                "color": "orange",
+                "value": 72
+              },
+              {
+                "color": "red",
+                "value": 79
+              }
+            ]
+          },
+          "unit": "fahrenheit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_tempOutdoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Outside"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 2,
+        "x": 20,
+        "y": 10
+      },
+      "id": 6,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "min"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_temperature{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_tempIndoor",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_tempOutdoor",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "Lowest Temperature",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-blue",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 41
+              },
+              {
+                "color": "green",
+                "value": 64
+              },
+              {
+                "color": "orange",
+                "value": 72
+              },
+              {
+                "color": "red",
+                "value": 79
+              }
+            ]
+          },
+          "unit": "fahrenheit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_temperature\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_tempOutdoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Outside"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 2,
+        "x": 22,
+        "y": 10
+      },
+      "id": 7,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_temperature{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_tempIndoor",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_tempOutdoor",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "Average Temperature",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {},
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 30
+      },
+      "id": 11,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<span style=\"font-size:34px\">Humidity</span>\n         ",
+        "mode": "html"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {},
+          "refId": "A"
+        }
+      ],
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 25
+              },
+              {
+                "color": "green",
+                "value": 30
+              },
+              {
+                "color": "dark-blue",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "humidity"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 18,
+        "x": 0,
+        "y": 32
+      },
+      "id": 12,
+      "interval": "",
+      "options": {
+        "displayMode": "lcd",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "limit": 1,
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_humidity{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_humIndoor",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 25
+              },
+              {
+                "color": "green",
+                "value": 30
+              },
+              {
+                "color": "dark-blue",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "humidity"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 32
+      },
+      "id": 13,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_humidity{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Average House Humidity",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "mean"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "right",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 30,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red"
+              },
+              {
+                "color": "#EAB839",
+                "value": 25
+              },
+              {
+                "color": "green",
+                "value": 30
+              },
+              {
+                "color": "dark-blue",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "humidity"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 18,
+        "x": 0,
+        "y": 40
+      },
+      "id": 14,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_humidity{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_humIndoor",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Humidity",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red"
+              },
+              {
+                "color": "#EAB839",
+                "value": 25
+              },
+              {
+                "color": "green",
+                "value": 30
+              },
+              {
+                "color": "dark-blue",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "humidity"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 2,
+        "x": 18,
+        "y": 40
+      },
+      "id": 15,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_humidity{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_humIndoor",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Highest Humidity",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red"
+              },
+              {
+                "color": "#EAB839",
+                "value": 25
+              },
+              {
+                "color": "green",
+                "value": 30
+              },
+              {
+                "color": "dark-blue",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "humidity"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 2,
+        "x": 20,
+        "y": 40
+      },
+      "id": 16,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "min"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_humidity{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_humIndoor",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Lowest Humidity",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red"
+              },
+              {
+                "color": "#EAB839",
+                "value": 25
+              },
+              {
+                "color": "green",
+                "value": 30
+              },
+              {
+                "color": "dark-blue",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "humidity"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 2,
+        "x": 22,
+        "y": 40
+      },
+      "id": 17,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_humidity{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_humIndoor",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Average Humidity",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {},
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 60
+      },
+      "id": 21,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<span style=\"font-size:34px\">CO2</span>\n         ",
+        "mode": "html"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {},
+          "refId": "A"
+        }
+      ],
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "super-light-orange",
+                "value": 1000
+              },
+              {
+                "color": "orange",
+                "value": 1200
+              },
+              {
+                "color": "red",
+                "value": 1500
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_humidity\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 18,
+        "x": 0,
+        "y": 62
+      },
+      "id": 22,
+      "interval": "",
+      "options": {
+        "displayMode": "lcd",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "limit": 1,
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_CO2{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "#EAB839",
+                "value": 1000
+              },
+              {
+                "color": "orange",
+                "value": 1200
+              },
+              {
+                "color": "red",
+                "value": 1500
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 62
+      },
+      "id": 23,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_CO2{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Average House CO2 Concentration",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "mean"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "right",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 30,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red"
+              },
+              {
+                "color": "#EAB839",
+                "value": 25
+              },
+              {
+                "color": "green",
+                "value": 30
+              },
+              {
+                "color": "dark-blue",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 18,
+        "x": 0,
+        "y": 70
+      },
+      "id": 24,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_CO2{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "CO2 Concentrations",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "super-light-orange",
+                "value": 1000
+              },
+              {
+                "color": "orange",
+                "value": 1200
+              },
+              {
+                "color": "red",
+                "value": 1500
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 2,
+        "x": 18,
+        "y": 70
+      },
+      "id": 25,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_CO2{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Highest CO2",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "super-light-orange",
+                "value": 1000
+              },
+              {
+                "color": "orange",
+                "value": 1200
+              },
+              {
+                "color": "red",
+                "value": 1500
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 2,
+        "x": 20,
+        "y": 70
+      },
+      "id": 26,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "min"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_CO2{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Lowest CO2",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "super-light-orange",
+                "value": 1000
+              },
+              {
+                "color": "orange",
+                "value": 1200
+              },
+              {
+                "color": "red",
+                "value": 1500
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_CO2\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 2,
+        "x": 22,
+        "y": 70
+      },
+      "id": 27,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_CO2{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Average CO2",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {},
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 90
+      },
+      "id": 31,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<span style=\"font-size:34px\">PM2.5</span>\n         ",
+        "mode": "html"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {},
+          "refId": "A"
+        }
+      ],
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "super-light-orange",
+                "value": 1000
+              },
+              {
+                "color": "orange",
+                "value": 1200
+              },
+              {
+                "color": "red",
+                "value": 1500
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 18,
+        "x": 0,
+        "y": 92
+      },
+      "id": 32,
+      "interval": "",
+      "options": {
+        "displayMode": "lcd",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "limit": 1,
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_pm25{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "#EAB839",
+                "value": 1000
+              },
+              {
+                "color": "orange",
+                "value": 1200
+              },
+              {
+                "color": "red",
+                "value": 1500
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 92
+      },
+      "id": 33,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_pm25{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Average House PM2.5 Concentration",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "mean"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "right",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 30,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red"
+              },
+              {
+                "color": "#EAB839",
+                "value": 25
+              },
+              {
+                "color": "green",
+                "value": 30
+              },
+              {
+                "color": "dark-blue",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 18,
+        "x": 0,
+        "y": 100
+      },
+      "id": 34,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_pm25{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "PM2.5 Concentrations",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "super-light-orange",
+                "value": 1000
+              },
+              {
+                "color": "orange",
+                "value": 1200
+              },
+              {
+                "color": "red",
+                "value": 1500
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 2,
+        "x": 18,
+        "y": 100
+      },
+      "id": 35,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_pm25{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Highest PM2.5",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "super-light-orange",
+                "value": 1000
+              },
+              {
+                "color": "orange",
+                "value": 1200
+              },
+              {
+                "color": "red",
+                "value": 1500
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 2,
+        "x": 20,
+        "y": 100
+      },
+      "id": 36,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "min"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_pm25{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Lowest PM2.5",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "super-light-orange",
+                "value": 1000
+              },
+              {
+                "color": "orange",
+                "value": 1200
+              },
+              {
+                "color": "red",
+                "value": 1500
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_Louise_Room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Louise' Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_bedroom_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bedroom"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_kitchen_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Kitchen"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_office_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Office"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"mqtt_pm25\", instance=\"mqtt-exporter:9000\", job=\"mqtt-exporter\", topic=\"device_everetts_room_sensor\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Everett's Room"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Hallway"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 2,
+        "x": 22,
+        "y": 100
+      },
+      "id": 37,
+      "interval": "",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_pm25{topic=~\"device_${Rooms}_sensor\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Average CO2",
+      "transformations": [],
+      "type": "stat"
+    }
+  ],
+  "refresh": "10s",
+  "revision": 1,
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": "",
+        "current": {
+          "selected": false,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Rooms",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "office",
+            "value": "office"
+          },
+          {
+            "selected": false,
+            "text": "kitchen",
+            "value": "kitchen"
+          },
+          {
+            "selected": false,
+            "text": "Louise_Room",
+            "value": "Louise_Room"
+          },
+          {
+            "selected": false,
+            "text": "Everett_Room",
+            "value": "Everett_Room"
+          },
+          {
+            "selected": false,
+            "text": "bedroom",
+            "value": "bedroom"
+          }
+        ],
+        "query": "office, kitchen, Louise_Room, Everett_Room, bedroom",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-12h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Environment Monitoring",
+  "uid": "pJn9TRGIk",
+  "version": 105,
+  "weekStart": ""
+}

@@ -76,9 +76,11 @@ scrape_configs:
       - targets: ['daikin-prometheus-exporter:5555']
 
   
-        #  - job_name: 'octoprint-monitoring'
-        #        
-        #    scrape_interval: 15s
-        #        #
-        #    static_configs:
-        #      - targets: ['192.168.0.59/plugin/prometheus_exporter']
+  - job_name: 'octoprint-monitoring'
+                
+    scrape_interval: 15s
+    metrics_path: '/plugin/prometheus_exporter/metrics'
+    params:
+        apikey: ['6C959C68FCD1476EA596F934EE58FCDE']
+    static_configs:
+      - targets: ['192.168.0.35:80']

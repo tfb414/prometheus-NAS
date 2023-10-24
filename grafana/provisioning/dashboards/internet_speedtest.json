@@ -26,7 +26,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 14336,
   "graphTooltip": 2,
-  "id": 8,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -225,7 +225,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "speedtest_jitter_latency_milliseconds",
+          "expr": "speedtest_jitter_latency_milliseconds{user_isp=\"$ISP\"} * 1000",
           "hide": false,
           "interval": "",
           "legendFormat": "Latency",
@@ -1222,7 +1222,7 @@
     ]
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -1239,6 +1239,6 @@
   "timezone": "",
   "title": "Speedtest",
   "uid": "DS4xw19Gz",
-  "version": 29,
+  "version": 5,
   "weekStart": ""
 }

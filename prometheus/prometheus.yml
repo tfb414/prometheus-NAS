@@ -28,55 +28,96 @@ alerting:
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
 
-  - job_name: 'prometheus'
+  - job_name: 'prometheus-zima'
 
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 15s
 
     static_configs:
          - targets: ['localhost:9090']
+           labels:
+             host: "zima"
 
-  - job_name: 'cadvisor'
+  - job_name: 'cadvisor-zima'
 
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 15s
 
     static_configs:
       - targets: ['cadvisor:8080']
+        labels:
+          host: "zima"
 
-  - job_name: 'node-exporter'
+  - job_name: 'node-exporter-zima'
 
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 15s
   
     static_configs:
       - targets: ['node-exporter:9100']
+        labels:
+          host: "zima"
 
-  - job_name: 'mqtt-exporter'
+            #  - job_name: 'prometheus'
+            #
+    # Override the global default and scrape targets from this job every 5 seconds.
+    #    scrape_interval: 15s
+
+            #    static_configs:
+            #         - targets: ['192.168.0.81:9090']
+            #           labels:
+            #             host: "delphi"
+
+  - job_name: 'cadvisor-delphi'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 15s
+
+    static_configs:
+      - targets: ['192.168.0.81:8080']
+        labels:
+          host: "delphi"
+
+  - job_name: 'node-exporter-delphi'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 15s
+
+    static_configs:
+      - targets: ['192.168.0.81:9100']
+        labels: 
+          host: "delphi"
+
+  - job_name: 'mqtt-exporter-zima'
 
     scrape_interval: 15s
 
     static_configs:
       - targets: ["mqtt-exporter:9000"]
+        labels:
+          host: "zima"
 
-
-  - job_name: 'internet-monitoring'
+  - job_name: 'internet-monitoring-zima'
 
     scrape_interval: 10m
     scrape_timeout: 60s # running speedtest needs time to complete
 
     static_configs:
       - targets: ['speedtest:9798']
+        labels:
+          host: "zima"
 
-  - job_name: 'daiken-monitoring'
+  - job_name: 'daiken-monitoring-zima'
 
     scrape_interval: 5m
 
     static_configs:
       - targets: ['daikin-prometheus-exporter:5555']
+        labels:
+          host: "zima"
 
   
-  - job_name: 'octoprint-monitoring'
+  - job_name: 'octoprint-monitoring-octopi'
                 
     scrape_interval: 15s
     metrics_path: '/plugin/prometheus_exporter/metrics'
@@ -84,3 +125,23 @@ scrape_configs:
         apikey: ['6C959C68FCD1476EA596F934EE58FCDE']
     static_configs:
       - targets: ['192.168.0.35:80']
+        labels:
+          host: "octopi"
+
+  - job_name: 'node-exporter-octopi'
+
+    scrape_interval: 15s
+
+    static_configs:
+      - targets: ['192.168.0.35:9100']
+        labels:
+          host: "octopi"
+
+  - job_name: 'cadvisor-octopi'
+
+    scrape_interval: 15s
+
+    static_configs:
+      - targets: ['192.168.0.35:8080']
+        labels:
+          host: "octopi"

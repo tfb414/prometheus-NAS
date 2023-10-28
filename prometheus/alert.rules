@@ -38,3 +38,12 @@ groups:
     annotations:
       summary: "Instance {{ $labels.instance }} high memory usage detected"
       description: "{{ $labels.instance }}: Memory usage is above 90% (current value is: {{ $value }})"
+
+  # Alert for DerpHd harddrive available space less than 30%
+  - alert: derp_hd_storage_available
+    expr: 100 - node_filesystem_avail_bytes {mountpoint="/srv/dev-disk-by-uuid-D6C49AAEC49A8FFB"} / node_filesystem_size_bytes{mountpoint="/srv/dev-disk-by-uuid-D6C49AAEC49A8FFB"} * 100 > 70
+    for: 2m
+    labels:
+      severity: page
+    annotations:
+      summary: "DerpHD is getting low on space"

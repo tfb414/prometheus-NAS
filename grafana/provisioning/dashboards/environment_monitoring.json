@@ -28,7 +28,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 13700,
   "graphTooltip": 0,
-  "id": 9,
+  "id": 15,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -162,7 +162,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
             },
             "properties": [
               {
@@ -541,7 +541,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
             },
             "properties": [
               {
@@ -553,7 +553,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"ac_tempOutdoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              "options": "{__name__=\"ac_tempOutdoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
             },
             "properties": [
               {
@@ -565,7 +565,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"ac_heatingStatus\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              "options": "{__name__=\"ac_tempOutdoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
             },
             "properties": [
               {
@@ -587,6 +587,35 @@
                     10
                   ],
                   "fill": "dot"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_heatingStatus\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Heating"
+              },
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    0,
+                    10
+                  ],
+                  "fill": "dot"
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
                 }
               }
             ]
@@ -668,7 +697,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "ac_heatingStatus",
+          "expr": "ac_heatingStatus >= 2",
           "hide": false,
           "legendFormat": "__auto",
           "range": true,
@@ -792,7 +821,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
             },
             "properties": [
               {
@@ -804,7 +833,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"ac_tempOutdoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              "options": "{__name__=\"ac_tempOutdoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
             },
             "properties": [
               {
@@ -1012,7 +1041,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
             },
             "properties": [
               {
@@ -1024,7 +1053,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"ac_tempOutdoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              "options": "{__name__=\"ac_tempOutdoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
             },
             "properties": [
               {
@@ -1200,7 +1229,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              "options": "{__name__=\"ac_tempIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
             },
             "properties": [
               {
@@ -1212,7 +1241,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"ac_tempOutdoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              "options": "{__name__=\"ac_tempOutdoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
             },
             "properties": [
               {
@@ -1412,7 +1441,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
             },
             "properties": [
               {
@@ -1685,7 +1714,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "#EAB839",
@@ -1767,7 +1797,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
             },
             "properties": [
               {
@@ -1840,7 +1870,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "#EAB839",
@@ -1922,12 +1953,24 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
             },
             "properties": [
               {
                 "id": "displayName",
                 "value": "Hallway"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humidity_outside\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Outside"
               }
             ]
           }
@@ -1980,6 +2023,18 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_humidity_outside",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "C"
         }
       ],
       "title": "Highest Humidity",
@@ -1999,7 +2054,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "#EAB839",
@@ -2081,12 +2137,24 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
             },
             "properties": [
               {
                 "id": "displayName",
                 "value": "Hallway"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humidity_outside\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Outside"
               }
             ]
           }
@@ -2139,6 +2207,18 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_humidity_outside",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "C"
         }
       ],
       "title": "Lowest Humidity",
@@ -2158,7 +2238,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "#EAB839",
@@ -2240,12 +2321,24 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring\"}"
+              "options": "{__name__=\"ac_humIndoor\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
             },
             "properties": [
               {
                 "id": "displayName",
                 "value": "Hallway"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"ac_humidity_outside\", instance=\"daikin-prometheus-exporter:5555\", job=\"daiken-monitoring-zima\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Outside"
               }
             ]
           }
@@ -2298,6 +2391,18 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "ac_humidity_outside",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "C"
         }
       ],
       "title": "Average Humidity",
@@ -2345,7 +2450,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "super-light-orange",
@@ -2492,7 +2598,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "#EAB839",
@@ -2687,7 +2794,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "#EAB839",
@@ -2830,7 +2938,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "super-light-orange",
@@ -2977,7 +3086,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "super-light-orange",
@@ -3124,7 +3234,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "super-light-orange",
@@ -3299,7 +3410,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "super-light-orange",
@@ -3446,7 +3558,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "#EAB839",
@@ -3641,7 +3754,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "#EAB839",
@@ -3784,7 +3898,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "super-light-orange",
@@ -3931,7 +4046,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "super-light-orange",
@@ -4078,7 +4194,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "super-light-orange",
@@ -4282,6 +4399,6 @@
   "timezone": "browser",
   "title": "Environment Monitoring",
   "uid": "pJn9TRGIk",
-  "version": 105,
+  "version": 22,
   "weekStart": ""
 }
